@@ -1,0 +1,23 @@
+{
+  "topic": "Introduction to RAG",
+  "scope": "Human-curated factual reference. This is supplied context, not live retrieval or a production RAG index.",
+  "teaching_example": {
+    "source_note": "The college library closes at 1 pm on Saturday. It is closed on Sunday.",
+    "question": "When does the college library close on Saturday?",
+    "missing_question": "What time does the library open on a public holiday?"
+  },
+  "references": [
+    {"id": "rag-paper", "url": "https://arxiv.org/abs/2005.11401", "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"},
+    {"id": "ollama-api", "url": "https://github.com/ollama/ollama/blob/main/docs/api.md", "title": "Ollama API documentation"}
+  ],
+  "facts": [
+    "RAG expands to Retrieval-Augmented Generation.",
+    "RAG retrieves relevant external information and supplies it as context for generating answers.",
+    "A typical pipeline prepares documents, retrieves passages for a question, and generates using those passages.",
+    "Chunking splits documents into smaller pieces. Embeddings represent meaning as numerical vectors. Vector stores support similarity search; keyword retrieval is also possible.",
+    "Using RAG does not inherently require retraining model weights.",
+    "Retrieval can miss relevant evidence; evidence can be outdated; generated answers can still be wrong.",
+    "Citations support verification but do not guarantee correctness. Missing evidence should lead to abstention rather than invented facts.",
+    "College timetable and shop policy examples are fictional teaching examples, not claims about real institutions."
+  ]
+}

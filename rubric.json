@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "checks": {
+    "accuracy": "Every substantive RAG claim agrees with the reference facts. No claim that RAG guarantees correctness or normally retrains weights.",
+    "coverage": "Defines RAG, explains why it helps, document preparation, retrieval, context, generation, and at least two failure modes.",
+    "language": "Uses simple English suited to an Indian class-12 learner with limited English; no unexplained specialist terms or unnecessary complex sentences.",
+    "example": "Includes one internally consistent worked example with question, retrieved evidence, answer and source label, plus missing-evidence behaviour.",
+    "jargon": "Explains RAG and every specialist term used, including embeddings, chunks and vector stores when present.",
+    "flow": "Builds from a familiar problem to definition, why, how, worked example, limits and recap; no contradictory teaching steps.",
+    "practice": "Includes a learner exercise and correct answer plus a short knowledge check with answers."
+  }
+}
