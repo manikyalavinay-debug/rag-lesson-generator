@@ -1,0 +1,236 @@
+{
+  "run_id": "20261107T160707Z-126628d1",
+  "mode": "live",
+  "status": "passed",
+  "topic": "Introduction to RAG",
+  "models": {
+    "generator": "gemma3:4b",
+    "judge": "qwen3:8b"
+  },
+  "rubric_version": 1,
+  "rubric_sha256": "96c08ff3532bb3c18ceca3df608ffdd4efe1745aa88c192e8b89688eb519a594",
+  "memory_advice": {
+    "accuracy": "Pay special attention to this fixed checkpoint: Every substantive RAG claim agrees with the reference facts. No claim that RAG guarantees correctness or normally retrains weights.",
+    "coverage": "Pay special attention to this fixed checkpoint: Defines RAG, explains why it helps, document preparation, retrieval, context, generation, and at least two failure modes."
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "input": {
+        "topic": "Introduction to RAG",
+        "sources": {
+          "topic": "Introduction to RAG",
+          "scope": "Human-curated factual reference. This is supplied context, not live retrieval or a production RAG index.",
+          "teaching_example": {
+            "source_note": "The college library closes at 1 pm on Saturday. It is closed on Sunday.",
+            "question": "When does the college library close on Saturday?",
+            "missing_question": "What time does the library open on a public holiday?"
+          },
+          "references": [
+            {
+              "id": "rag-paper",
+              "url": "https://arxiv.org/abs/2005.11401",
+              "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+            },
+            {
+              "id": "ollama-api",
+              "url": "https://github.com/ollama/ollama/blob/main/docs/api.md",
+              "title": "Ollama API documentation"
+            }
+          ],
+          "facts": [
+            "RAG expands to Retrieval-Augmented Generation.",
+            "RAG retrieves relevant external information and supplies it as context for generating answers.",
+            "A typical pipeline prepares documents, retrieves passages for a question, and generates using those passages.",
+            "Chunking splits documents into smaller pieces. Embeddings represent meaning as numerical vectors. Vector stores support similarity search; keyword retrieval is also possible.",
+            "Using RAG does not inherently require retraining model weights.",
+            "Retrieval can miss relevant evidence; evidence can be outdated; generated answers can still be wrong.",
+            "Citations support verification but do not guarantee correctness. Missing evidence should lead to abstention rather than invented facts.",
+            "College timetable and shop policy examples are fictional teaching examples, not claims about real institutions."
+          ]
+        },
+        "rubric": {
+          "version": 1,
+          "checks": {
+            "accuracy": "Every substantive RAG claim agrees with the reference facts. No claim that RAG guarantees correctness or normally retrains weights.",
+            "coverage": "Defines RAG, explains why it helps, document preparation, retrieval, context, generation, and at least two failure modes.",
+            "language": "Uses simple English suited to an Indian class-12 learner with limited English; no unexplained specialist terms or unnecessary complex sentences.",
+            "example": "Includes one internally consistent worked example with question, retrieved evidence, answer and source label, plus missing-evidence behaviour.",
+            "jargon": "Explains RAG and every specialist term used, including embeddings, chunks and vector stores when present.",
+            "flow": "Builds from a familiar problem to definition, why, how, worked example, limits and recap; no contradictory teaching steps.",
+            "practice": "Includes a learner exercise and correct answer plus a short knowledge check with answers."
+          }
+        },
+        "memory_advice": {
+          "accuracy": "Pay special attention to this fixed checkpoint: Every substantive RAG claim agrees with the reference facts. No claim that RAG guarantees correctness or normally retrains weights.",
+          "coverage": "Pay special attention to this fixed checkpoint: Defines RAG, explains why it helps, document preparation, retrieval, context, generation, and at least two failure modes."
+        },
+        "previous_failures": [],
+        "previous_lesson": null
+      },
+      "lesson": "# Introduction to RAG\n\n## Start with a familiar problem\n\nImagine you need to find the closing time of the college library. You could search the library website or ask a librarian, right?\n\n## What is RAG?\n\nRAG stands for Retrieval-Augmented Generation. Let\u2019s break it down: \u2018Retrieval\u2019 means finding relevant information \u2013 like searching for something online. \u2018Augmented\u2019 means enhanced or improved. \u2018Generation\u2019 means creating something new, like an answer to a question. So, RAG combines finding information and then using that information to create an answer.\n\n## Why it helps\n\nRAG helps because sometimes, a regular computer program (a \u2018model\u2019) doesn\u2019t have all the information it needs to answer a question. RAG gives the model extra facts to work with, making its answers more accurate and complete.\n\n## Prepare the documents\n\nTo use RAG, we first need to prepare the information. This means organizing documents \u2013 like the college timetable \u2013 into smaller pieces called \u2018chunks\u2019. We then create \u2018embeddings\u2019 for each chunk. Think of embeddings as lists of numbers that represent the meaning of each chunk. These embeddings are stored in a \u2018vector store\u2019 which allows us to quickly find chunks similar to a question.\n\n## How it works\n\nThe process works like this: 1. **Ask:** You give the system a question. 2. **Find:** The system uses the embeddings to find the most relevant chunks in the vector store. 3. **Read:** The system takes those chunks as context. 4. **Answer:** The system uses the context to generate an answer. This is why it\u2019s called \u2018Retrieval-Augmented Generation\u2019.\n\nImportantly, RAG doesn\u2019t usually change the model\u2019s internal settings (weights). It just provides extra information.\n\n## Words explained\n\n- **Model:** A computer program designed to understand and generate text. It\u2019s like a student learning from examples.\n\n- **Chunk:** A small piece of a document that\u2019s been split into smaller parts.\n\n- **Embeddings:** Lists of numbers that represent the meaning of text. They allow computers to compare the similarity of words and phrases.\n\n- **Vector Store:** A database specifically designed to store and quickly search through embeddings.\n\n- **Keyword Retrieval:** Finding information based on specific words or phrases.\n\n- **Weights:** Settings within a model that determine how it processes information.\n\n## A fictional worked example\n\n**Made-up source [Note A]:** The college library closes at 1 pm on Saturday. It is closed on Sunday.\n\n**Question:** When does the college library close on Saturday?\n\n**Retrieved text [Note A]:** The college library closes at 1 pm on Saturday. It is closed on Sunday.\n\n**Answer:** The college library closes at 1 pm on Saturday. [Note A] [Note A]\n\n**A question the note cannot answer:** What time does the library open on a public holiday?\n\n**Response when evidence is missing:** The note does not contain this information.\n\n## What can go wrong?\n\n- Retrieval can miss relevant information.\n\n- The information provided might be outdated.\n\n## Try it yourself\n\nBased on the provided information, what is the library\u2019s closing time on Sunday?\n\n**Answer:** The library is closed on Sunday.\n\n## Quick check\n\n1. What does RAG stand for?\n\n**Answer:** Retrieval-Augmented Generation\n\n2. What is a \u2018chunk\u2019 in the context of RAG?\n\n**Answer:** A small piece of a document.\n\n## Remember\n\nToday, we learned about RAG. It\u2019s a way to improve answers by finding relevant information and giving it to the model. Remember, RAG doesn\u2019t guarantee correct answers and relies on the quality of the information it retrieves. Always check the source of information!\n",
+      "changes": [
+        "Added glossary definitions",
+        "Included missing question and refusal to guess"
+      ],
+      "sections": {
+        "title": "Introduction to RAG",
+        "familiar_problem": "Imagine you need to find the closing time of the college library. You could search the library website or ask a librarian, right?",
+        "definition": "RAG stands for Retrieval-Augmented Generation. Let\u2019s break it down: \u2018Retrieval\u2019 means finding relevant information \u2013 like searching for something online. \u2018Augmented\u2019 means enhanced or improved. \u2018Generation\u2019 means creating something new, like an answer to a question. So, RAG combines finding information and then using that information to create an answer.",
+        "why": "RAG helps because sometimes, a regular computer program (a \u2018model\u2019) doesn\u2019t have all the information it needs to answer a question. RAG gives the model extra facts to work with, making its answers more accurate and complete.",
+        "preparation": "To use RAG, we first need to prepare the information. This means organizing documents \u2013 like the college timetable \u2013 into smaller pieces called \u2018chunks\u2019. We then create \u2018embeddings\u2019 for each chunk. Think of embeddings as lists of numbers that represent the meaning of each chunk. These embeddings are stored in a \u2018vector store\u2019 which allows us to quickly find chunks similar to a question.",
+        "steps": "The process works like this: 1. **Ask:** You give the system a question. 2. **Find:** The system uses the embeddings to find the most relevant chunks in the vector store. 3. **Read:** The system takes those chunks as context. 4. **Answer:** The system uses the context to generate an answer. This is why it\u2019s called \u2018Retrieval-Augmented Generation\u2019.",
+        "not_retraining": "Importantly, RAG doesn\u2019t usually change the model\u2019s internal settings (weights). It just provides extra information.",
+        "glossary": [
+          {
+            "term": "Model",
+            "meaning": "A computer program designed to understand and generate text. It\u2019s like a student learning from examples."
+          },
+          {
+            "term": "Chunk",
+            "meaning": "A small piece of a document that\u2019s been split into smaller parts."
+          },
+          {
+            "term": "Embeddings",
+            "meaning": "Lists of numbers that represent the meaning of text. They allow computers to compare the similarity of words and phrases."
+          },
+          {
+            "term": "Vector Store",
+            "meaning": "A database specifically designed to store and quickly search through embeddings."
+          },
+          {
+            "term": "Keyword Retrieval",
+            "meaning": "Finding information based on specific words or phrases."
+          },
+          {
+            "term": "Weights",
+            "meaning": "Settings within a model that determine how it processes information."
+          }
+        ],
+        "example": {
+          "source_note": "The college library closes at 1 pm on Saturday. It is closed on Sunday.",
+          "question": "When does the college library close on Saturday?",
+          "answer": "The college library closes at 1 pm on Saturday. [Note A]",
+          "missing_question": "What time does the library open on a public holiday?",
+          "missing_answer": "The note does not contain this information."
+        },
+        "risks": [
+          "Retrieval can miss relevant information.",
+          "The information provided might be outdated."
+        ],
+        "exercise": {
+          "question": "Based on the provided information, what is the library\u2019s closing time on Sunday?",
+          "answer": "The library is closed on Sunday."
+        },
+        "quiz": [
+          {
+            "question": "What does RAG stand for?",
+            "answer": "Retrieval-Augmented Generation"
+          },
+          {
+            "question": "What is a \u2018chunk\u2019 in the context of RAG?",
+            "answer": "A small piece of a document."
+          }
+        ],
+        "recap": "Today, we learned about RAG. It\u2019s a way to improve answers by finding relevant information and giving it to the model. Remember, RAG doesn\u2019t guarantee correct answers and relies on the quality of the information it retrieves. Always check the source of information!",
+        "changes": [
+          "Added glossary definitions",
+          "Included missing question and refusal to guess"
+        ]
+      },
+      "raw_evaluations": [
+        {
+          "checks": {
+            "accuracy": {
+              "pass": true,
+              "reason": "All substantive RAG claims align with the reference facts. The lesson correctly states that RAG does not guarantee correctness and does not inherently require retraining model weights.",
+              "evidence": "## Why it helps",
+              "evidence_line": "11"
+            },
+            "coverage": {
+              "pass": true,
+              "reason": "The lesson defines RAG, explains why it helps, covers document preparation, retrieval, context, generation, and includes at least two failure modes (retrieval can miss information and evidence can be outdated).",
+              "evidence": "## Why it helps",
+              "evidence_line": "11"
+            },
+            "language": {
+              "pass": true,
+              "reason": "The language is simple and suitable for an Indian class-12 learner with limited English. No unexplained specialist terms or unnecessary complex sentences are used.",
+              "evidence": "# Introduction to RAG",
+              "evidence_line": "1"
+            },
+            "example": {
+              "pass": true,
+              "reason": "The lesson includes a consistent worked example with a question, retrieved evidence, answer, and source label. It also includes behavior for missing evidence.",
+              "evidence": "**Made-up source [Note A]:** The college library closes at 1 pm on Saturday. It is closed on Sunday.",
+              "evidence_line": "41"
+            },
+            "jargon": {
+              "pass": true,
+              "reason": "All specialist terms (embeddings, chunks, vector stores) are explained in the lesson. The explanation is clear and suitable for the target audience.",
+              "evidence": "- **Embeddings:** Lists of numbers that represent the meaning of text. They allow computers to compare the similarity of words and phrases.",
+              "evidence_line": "31"
+            },
+            "flow": {
+              "pass": true,
+              "reason": "The lesson builds from a familiar problem (library closing time) to the definition of RAG, explains why it helps, how it works, includes a worked example, discusses limitations, and concludes with a recap.",
+              "evidence": "## Start with a familiar problem",
+              "evidence_line": "3"
+            },
+            "practice": {
+              "pass": true,
+              "reason": "The lesson includes a learner exercise (library closing time on Sunday) with a correct answer and a short knowledge check with answers.",
+              "evidence": "Based on the provided information, what is the library\u2019s closing time on Sunday?",
+              "evidence_line": "61"
+            }
+          }
+        }
+      ],
+      "checks": {
+        "accuracy": {
+          "pass": true,
+          "reason": "All substantive RAG claims align with the reference facts. The lesson correctly states that RAG does not guarantee correctness and does not inherently require retraining model weights.",
+          "evidence": "## Why it helps",
+          "evidence_line": "11"
+        },
+        "coverage": {
+          "pass": true,
+          "reason": "The lesson defines RAG, explains why it helps, covers document preparation, retrieval, context, generation, and includes at least two failure modes (retrieval can miss information and evidence can be outdated).",
+          "evidence": "## Why it helps",
+          "evidence_line": "11"
+        },
+        "language": {
+          "pass": true,
+          "reason": "The language is simple and suitable for an Indian class-12 learner with limited English. No unexplained specialist terms or unnecessary complex sentences are used.",
+          "evidence": "# Introduction to RAG",
+          "evidence_line": "1"
+        },
+        "example": {
+          "pass": true,
+          "reason": "The lesson includes a consistent worked example with a question, retrieved evidence, answer, and source label. It also includes behavior for missing evidence.",
+          "evidence": "**Made-up source [Note A]:** The college library closes at 1 pm on Saturday. It is closed on Sunday.",
+          "evidence_line": "41"
+        },
+        "jargon": {
+          "pass": true,
+          "reason": "All specialist terms (embeddings, chunks, vector stores) are explained in the lesson. The explanation is clear and suitable for the target audience.",
+          "evidence": "- **Embeddings:** Lists of numbers that represent the meaning of text. They allow computers to compare the similarity of words and phrases.",
+          "evidence_line": "31"
+        },
+        "flow": {
+          "pass": true,
+          "reason": "The lesson builds from a familiar problem (library closing time) to the definition of RAG, explains why it helps, how it works, includes a worked example, discusses limitations, and concludes with a recap.",
+          "evidence": "## Start with a familiar problem",
+          "evidence_line": "3"
+        },
+        "practice": {
+          "pass": true,
+          "reason": "The lesson includes a learner exercise (library closing time on Sunday) with a correct answer and a short knowledge check with answers.",
+          "evidence": "Based on the provided information, what is the library\u2019s closing time on Sunday?",
+          "evidence_line": "61"
+        }
+      },
+      "failures": []
+    }
+  ]
+}
